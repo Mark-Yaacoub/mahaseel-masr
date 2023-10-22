@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { SendEmailModule } from './SendEmail/sendemail.module';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { AuthModule } from './auth/auth.module';
       envFilePath: '.env',
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.DB_URL), UserModule, AuthModule,
+    MongooseModule.forRoot(process.env.DB_URL), UserModule, AuthModule, SendEmailModule,
 
   ],
   controllers: [AppController],

@@ -6,17 +6,17 @@ export class CreateUserDto {
   @ApiProperty({ example: 'John' }) 
   @IsString()
   @IsNotEmpty()
-  first_name: string;
+  firstName: string;
 
   @ApiProperty({ example: 'Doe' }) 
   @IsString()
   @IsNotEmpty()
-  last_name: string;
+  lastName: string;
 
   @ApiProperty({ example: 'johnie' }) 
   @IsString()
-  @IsOptional()
-  username: string;
+  @IsNotEmpty()
+  userName: string;
 
   @ApiProperty({ example: 'john.doe@example.com' }) 
   @IsEmail()
@@ -26,11 +26,11 @@ export class CreateUserDto {
   @ApiProperty({ example: '2000-01-01' }) 
   @IsDate()
   @IsNotEmpty()
-  Date_of_birth: Date;
+  dateOfBirth: Date;
 
   @ApiProperty({ example: 'https://example.com/profile.jpg' }) 
   @IsOptional()
-  profile_picture: string;
+  profilePicture: string;
 
   @IsNotEmpty()
   @ApiProperty({ example: 'Mm@12345' }) 
