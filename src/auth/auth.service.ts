@@ -5,10 +5,7 @@ import { jwtPayloadUser } from './auth.model';
 import { JwtService } from '@nestjs/jwt';
 import { MessageEnum } from 'src/shared/message.enum';
 import { ResponseLogin, UserResponse } from 'src/user/dto/user.respon';
-import { User } from 'src/user/user.entity';
-import { EmailDto } from 'src/SendEmail/dto/email.dto';
-import { SendEmailService } from 'src/SendEmail/sendemail.service';
-import { Response } from 'src/shared/response';
+
 
 
 @Injectable()

@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateUserDto } from './dto/user.dto';
+import { CreateUserDto, ReSendOtp, verifyUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'src/shared/response';
 import { MessageEnum } from 'src/shared/message.enum';
 import { SendEmailService } from 'src/SendEmail/sendemail.service';
-import { EmailDto } from 'src/SendEmail/dto/email.dto';
+import { EmailDto } from 'src/sendEmail/dto/email.dto';
+import { UserNotFoundException } from 'src/shared/not-found.exception';
 
 
 
@@ -20,6 +21,11 @@ export class UserService {
 
   )
   { }
+
+  async findUser(email: string): Promise<boolean> {
+    const user = await this.userModel.findOne({ email }).exec();
+    return !!user;
+  }
 
   async registerUser(createUserDto: CreateUserDto): Promise<Response<User>> {
       const { firstName, lastName, userName, email, dateOfBirth, profilePicture, password } = createUserDto;
@@ -59,12 +65,70 @@ export class UserService {
       };
     } 
 
-  async findUserByEmail(email: string): Promise<User> {
-    return this.userModel.findOne({ email }).exec();
-  }
+    async findUserByEmail(email: string): Promise<User> {
+      const user = await this.userModel.findOne({ email });
+      if (!user) {
+        throw new UserNotFoundException('User not found');
+      }
+      return user;
+    }
 
   async comparePasswords(enteredPassword: string, hashedPassword: string): Promise<boolean> {
     return bcrypt.compare(enteredPassword, hashedPassword);
+  }
+
+  async reSendOtp(dto: ReSendOtp): Promise<any> {
+      const user = await this.findUserByEmail(dto.email);
+
+      const otp = this.generateRandomOTP();
+      const newOtp =  user.otp = parseInt(otp);
+      await user.save();
+      
+      let emailBody = new EmailDto();
+
+      emailBody.recipient = user.email;
+      emailBody.otp = newOtp; 
+
+
+      let sendEmail = await this.sendEmailService.sendEmailOtp(emailBody);
+
+      return {
+        status: 200,
+        message: 'A new OTP has been sent to your registered email',
+      };
+    
+  }
+
+  async verifyUser(dto: verifyUserDto): Promise<any> {
+    try {
+      const user = await this.findUserByEmail(dto.email);
+  
+      if (user.otp !== dto.otp) {
+        return {
+          status: 400,
+          message: 'Invalid OTP',
+        };
+      }
+      user.verified = 1;
+      await user.save();
+      return {
+        status: 200,
+        message: 'User verified successfully',
+      };
+    } catch (error) {
+      return {
+        status: 500,
+        message: 'Internal Server Error',
+      };
+    }
+  }
+  
+
+  generateRandomOTP(): string {
+    const min = 1000;
+    const max = 9999;
+    const otp = Math.floor(Math.random() * (max - min + 1)) + min;
+    return otp.toString();
   }
 
 }
