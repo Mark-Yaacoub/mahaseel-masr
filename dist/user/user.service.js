@@ -131,7 +131,6 @@ let UserService = class UserService {
             };
         }
         catch (error) {
-            console.log(error);
             if (error.code === 11000) {
                 return {
                     status: 400,
@@ -207,6 +206,21 @@ let UserService = class UserService {
         const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
         console.log(isPasswordValid);
         return isPasswordValid;
+    }
+    async deleteUser(userId) {
+        const user = await this.userModel.findByIdAndDelete(userId);
+        if (!user) {
+            return {
+                status: 400,
+                messageEn: message_enum_1.MessageEnum.UserNotFoundEn,
+                messageAr: message_enum_1.MessageEnum.UserNotFoundAr,
+            };
+        }
+        return {
+            status: 200,
+            messageEn: message_enum_1.MessageEnum.DeleteUserSuccessEn,
+            messageAr: message_enum_1.MessageEnum.DeleteUserSuccessAr,
+        };
     }
     async generateRandomPassword() {
         const passwordPattern = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;

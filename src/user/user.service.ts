@@ -164,8 +164,6 @@ export class UserService {
               data: updatedUser,
           };
       } catch (error) {
-        console.log(error);
-        
           if (error.code === 11000) {
               return {
                   status: 400,
@@ -278,6 +276,21 @@ async checkCurrentPasswordValidity(currentPassword: string, userId: string): Pro
   return isPasswordValid;
 }
 
+async deleteUser(userId: string): Promise<Response<User>> {
+    const user =  await this.userModel.findByIdAndDelete(userId);
+    if (!user) {
+      return {
+        status: 400,
+        messageEn: MessageEnum.UserNotFoundEn,
+        messageAr: MessageEnum.UserNotFoundAr,
+      };
+    }
+  return {
+    status: 200,
+    messageEn: MessageEnum.DeleteUserSuccessEn,
+    messageAr: MessageEnum.DeleteUserSuccessAr,
+  };
+}
 
   async generateRandomPassword(): Promise<string> {
     const passwordPattern =

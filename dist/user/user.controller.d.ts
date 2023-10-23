@@ -41,4 +41,5 @@ export declare class UserController {
     findUserById(id: string): Promise<User>;
     updateUser(id: string, dto: UpdateUserDto): Promise<Response<User>>;
     updatePassword(id: string, dto: UpdatePasswordDto): Promise<Response<User>>;
+    deleteUser(id: string): Promise<Response<User>>;
 }

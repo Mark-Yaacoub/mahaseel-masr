@@ -26,5 +26,7 @@ export declare enum MessageEnum {
     PasswordUpdatedEn = "Password updated successfully",
     PasswordUpdatedAr = "\u062A\u0645 \u062A\u062D\u062F\u064A\u062B \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0628\u0646\u062C\u0627\u062D",
     UserNotFoundEn = "User not found",
-    UserNotFoundAr = "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F"
+    UserNotFoundAr = "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F",
+    DeleteUserSuccessEn = "User deleted successfully",
+    DeleteUserSuccessAr = "\u062A\u0645 \u062D\u0630\u0641 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0628\u0646\u062C\u0627\u062D"
 }

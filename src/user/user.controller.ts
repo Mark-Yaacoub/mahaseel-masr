@@ -75,5 +75,14 @@ export class UserController {
   }
   
 
+  @Delete('/:id')
+  @UseGuards(AuthGuard())
+  @ApiOperation({ summary: 'Delete a user by ID' })
+  @ApiParam({ name: 'id', required: true  , description: 'User ID' , type: 'string'
+  , example: '6536448743a9f50c3e8c3075'})
+  deleteUser(@Param('id') id: string): Promise<Response<User>> {
+    return this.userService.deleteUser(id);
+  }
+
 
 }

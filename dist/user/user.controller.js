@@ -35,6 +35,9 @@ let UserController = class UserController {
     async updatePassword(id, dto) {
         return this.userService.updatePassword(id, dto);
     }
+    deleteUser(id) {
+        return this.userService.deleteUser(id);
+    }
 };
 exports.UserController = UserController;
 __decorate([
@@ -83,6 +86,17 @@ __decorate([
     __metadata("design:paramtypes", [String, user_dto_1.UpdatePasswordDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updatePassword", null);
+__decorate([
+    (0, common_1.Delete)('/:id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    (0, swagger_1.ApiOperation)({ summary: 'Delete a user by ID' }),
+    (0, swagger_1.ApiParam)({ name: 'id', required: true, description: 'User ID', type: 'string',
+        example: '6536448743a9f50c3e8c3075' }),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "deleteUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
     (0, swagger_1.ApiBearerAuth)('access-token'),

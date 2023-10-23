@@ -41,4 +41,7 @@ export enum MessageEnum {
   UserNotFoundEn='User not found',
   UserNotFoundAr='المستخدم غير موجود',
 
+  DeleteUserSuccessEn='User deleted successfully',
+  DeleteUserSuccessAr='تم حذف المستخدم بنجاح',
+
 }

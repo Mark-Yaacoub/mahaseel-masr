@@ -31,5 +31,7 @@ var MessageEnum;
     MessageEnum["PasswordUpdatedAr"] = "\u062A\u0645 \u062A\u062D\u062F\u064A\u062B \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0628\u0646\u062C\u0627\u062D";
     MessageEnum["UserNotFoundEn"] = "User not found";
     MessageEnum["UserNotFoundAr"] = "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F";
+    MessageEnum["DeleteUserSuccessEn"] = "User deleted successfully";
+    MessageEnum["DeleteUserSuccessAr"] = "\u062A\u0645 \u062D\u0630\u0641 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0628\u0646\u062C\u0627\u062D";
 })(MessageEnum || (exports.MessageEnum = MessageEnum = {}));
 //# sourceMappingURL=message.enum.js.map

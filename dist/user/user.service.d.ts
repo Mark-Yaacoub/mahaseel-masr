@@ -53,5 +53,6 @@ export declare class UserService {
     forgetPassword(dto: forgetPassword): Promise<any>;
     updatePassword(userId: string, dto: UpdatePasswordDto): Promise<Response<User>>;
     checkCurrentPasswordValidity(currentPassword: string, userId: string): Promise<boolean>;
+    deleteUser(userId: string): Promise<Response<User>>;
     generateRandomPassword(): Promise<string>;
 }
