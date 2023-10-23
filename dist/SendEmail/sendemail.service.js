@@ -77,4 +77,4 @@ exports.SendEmailService = SendEmailService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [])
 ], SendEmailService);
-//# sourceMappingURL=sendemail.service.js.map
+//# sourceMappingURL=sendEmail.service.js.map

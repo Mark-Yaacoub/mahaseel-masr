@@ -5,7 +5,7 @@ import { EmailDto } from './dto/email.dto';
 @Controller('email')
 export class SendEmailController {
   constructor(private sendEmailService: SendEmailService) {}
-
+ 
   // @Post('/sendOtp')
   // async sendEmail(@Body() emailData: EmailDto): Promise<any> {
   //   try {
