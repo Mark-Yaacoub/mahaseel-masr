@@ -8,11 +8,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   // DATABASE CONNECT
-  // let db = process.env.DB_URL;
-  // mongoose
-  //   .connect(db)
-  //   .then(() => console.log('Database Connected'))
-  //   .catch((e) => console.log(e));
+  let db = process.env.DB_URL;
+  mongoose
+    .connect(db)
+    .then(() => console.log('Database Connected'))
+    .catch((e) => console.log(e));
   
   app.useGlobalPipes(
     new ValidationPipe({
