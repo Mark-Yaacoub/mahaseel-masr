@@ -19,6 +19,7 @@ let UserModule = class UserModule {
     configure(consumer) {
         consumer
             .apply(check_user_role_middleware_1.CheckUserRoleMiddleware)
+            .exclude({ path: 'users/getProfileUser', method: common_1.RequestMethod.GET })
             .forRoutes(user_controller_1.UserController);
     }
 };

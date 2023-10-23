@@ -33,8 +33,11 @@ export class CheckUserRoleMiddleware implements NestMiddleware {
         return next();
       }
 
+      console.log(payload.userId );
+      console.log(req.params.id );
       
       if (payload.userId === req.params.id) {
+        console.log(payload, "payload");
         
         return next();
       } else {

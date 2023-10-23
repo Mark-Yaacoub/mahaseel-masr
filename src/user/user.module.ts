@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -18,9 +18,11 @@ import { SendEmailModule } from 'src/send-email/send-email.module';
 export class UserModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(CheckUserRoleMiddleware)
-      .forRoutes(
-        UserController
-      );
+    .apply(CheckUserRoleMiddleware)
+    .exclude(
+      { path: 'users/getProfileUser', method: RequestMethod.GET },
+    )
+    .forRoutes(UserController);
+      
   }
 }

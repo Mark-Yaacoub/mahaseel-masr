@@ -38,7 +38,10 @@ let CheckUserRoleMiddleware = class CheckUserRoleMiddleware {
             if (payload.userRole === enum_1.UserRole.Admin) {
                 return next();
             }
+            console.log(payload.userId);
+            console.log(req.params.id);
             if (payload.userId === req.params.id) {
+                console.log(payload, "payload");
                 return next();
             }
             else {
