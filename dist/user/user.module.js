@@ -12,9 +12,9 @@ const user_service_1 = require("./user.service");
 const user_controller_1 = require("./user.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_entity_1 = require("./user.entity");
-const sendEmail_module_1 = require("../sendEmail/sendEmail.module");
 const auth_module_1 = require("../auth/auth.module");
 const check_user_role_middleware_1 = require("../check-user-role/check-user-role.middleware");
+const send_email_module_1 = require("../send-email/send-email.module");
 let UserModule = class UserModule {
     configure(consumer) {
         consumer
@@ -26,7 +26,7 @@ exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: user_entity_1.User.name, schema: user_entity_1.UserSchema }]),
-            sendEmail_module_1.SendEmailModule, auth_module_1.AuthModule],
+            send_email_module_1.SendEmailModule, auth_module_1.AuthModule],
         providers: [user_service_1.UserService],
         controllers: [user_controller_1.UserController],
         exports: [user_service_1.UserService]

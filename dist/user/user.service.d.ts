@@ -27,7 +27,7 @@ import { CreateUserDto, ReSendOtp, UpdatePasswordDto, UpdateUserDto, forgetPassw
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import { Response } from 'src/shared/response';
-import { SendEmailService } from 'src/sendEmail/sendEmail.service';
+import { SendEmailService } from 'src/send-email/send-email.service';
 export declare class UserService {
     private readonly userModel;
     private sendEmailService;

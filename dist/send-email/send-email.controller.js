@@ -5,21 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SendEmailController = void 0;
 const common_1 = require("@nestjs/common");
-const sendEmail_service_1 = require("./sendEmail.service");
 let SendEmailController = class SendEmailController {
-    constructor(sendEmailService) {
-        this.sendEmailService = sendEmailService;
-    }
 };
 exports.SendEmailController = SendEmailController;
 exports.SendEmailController = SendEmailController = __decorate([
-    (0, common_1.Controller)('email'),
-    __metadata("design:paramtypes", [sendEmail_service_1.SendEmailService])
+    (0, common_1.Controller)('send-email')
 ], SendEmailController);
-//# sourceMappingURL=sendEmail.controller.js.map
+//# sourceMappingURL=send-email.controller.js.map

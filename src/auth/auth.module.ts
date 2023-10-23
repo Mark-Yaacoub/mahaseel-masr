@@ -5,7 +5,6 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { UserModule } from 'src/user/user.module';
-import { SendEmailModule } from 'src/sendEmail/sendEmail.module';
 
 @Module({
   providers: [AuthService, JwtStrategy],     

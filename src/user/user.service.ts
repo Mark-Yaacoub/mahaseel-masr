@@ -7,9 +7,9 @@ import { UserDocument } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'src/shared/response';
 import { MessageEnum } from 'src/shared/message.enum';
-import { SendEmailService } from 'src/sendEmail/sendEmail.service';
 import { UserNotFoundException } from 'src/shared/not-found.exception';
-import { EmailDto, SendNewPassword } from 'src/SendEmail/dto/email.dto';
+import { SendEmailService } from 'src/send-email/send-email.service';
+import { EmailDto, SendNewPassword } from 'src/send-email/dto/email.dto';
 
 
 

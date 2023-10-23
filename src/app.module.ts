@@ -6,7 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
-import { SendEmailModule } from './sendEmail/sendEmail.module';
+import { SendEmailModule } from './send-email/send-email.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config()  

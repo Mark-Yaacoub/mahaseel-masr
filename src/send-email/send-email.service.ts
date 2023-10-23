@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 
+
 @Injectable()
 export class SendEmailService {
-  private transporter;
+    private transporter;
 
   constructor() {
     this.transporter = nodemailer.createTransport({
@@ -86,12 +87,12 @@ export class SendEmailService {
     <p style="color: #666666;">Your New Password is: ${password}</p>
     <p style="color: #666666;">Please use this password to log in to your account. </p>
     <p style="color: #666666;">For security reasons, we recommend that you log in to your account and change the password to something more memorable. 👌</p>
-    <p style="color: #666666;">If you didn't request this change, please contact our support team immediately at [support@restomanager.com] or call [01281151982].</p>
+    <p style="color: #666666;">If you didn't request this change, please contact our support team immediately at [support@mahaseel.com] or call [01281151982].</p>
 
    
-    <p style="color: #666666;">If you have any questions or need assistance, please don't hesitate to contact our support team at [support@restomanager.com] or call [01281151982].</p>
+    <p style="color: #666666;">If you have any questions or need assistance, please don't hesitate to contact our support team at [support@mahaseel.com] or call [01281151982].</p>
     <p style="color: #666666;">Thank you for using our services.</p>
-    <p style="color: #666666;">Best regards,<br>[RestoManager Team]</p>
+    <p style="color: #666666;">Best regards,<br>[mahaseel Masr Team]</p>
   </div>
 </body>
 </html>
@@ -110,11 +111,8 @@ export class SendEmailService {
         console.error('Error sending email:', error);
         // throw error;
       } else {
-        // console.log('Email sent successfully:', info.response);
+        // console.log('Email sent successfully:', info.response); 
       }
     });
   }
-
-
-
 }

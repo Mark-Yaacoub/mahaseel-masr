@@ -3,9 +3,9 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './user.entity';
-import { SendEmailModule } from 'src/sendEmail/sendEmail.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { CheckUserRoleMiddleware } from 'src/check-user-role/check-user-role.middleware';
+import { SendEmailModule } from 'src/send-email/send-email.module';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]) ,

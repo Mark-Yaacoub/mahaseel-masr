@@ -8,17 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SendEmailModule = void 0;
 const common_1 = require("@nestjs/common");
-const sendEmail_controller_1 = require("./sendEmail.controller");
-const sendEmail_service_1 = require("./sendEmail.service");
+const send_email_service_1 = require("./send-email.service");
+const send_email_controller_1 = require("./send-email.controller");
 let SendEmailModule = class SendEmailModule {
 };
 exports.SendEmailModule = SendEmailModule;
 exports.SendEmailModule = SendEmailModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
-        controllers: [sendEmail_controller_1.SendEmailController],
-        providers: [sendEmail_service_1.SendEmailService],
-        exports: [sendEmail_service_1.SendEmailService],
+        providers: [send_email_service_1.SendEmailService],
+        controllers: [send_email_controller_1.SendEmailController],
+        exports: [send_email_service_1.SendEmailService]
     })
 ], SendEmailModule);
-//# sourceMappingURL=sendEmail.module.js.map
+//# sourceMappingURL=send-email.module.js.map
