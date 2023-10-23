@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Request,
   Put,
   Delete,
   Param,
@@ -22,6 +23,7 @@ import { Response } from 'src/shared/response';
 import { AuthGuard } from '@nestjs/passport';
 import { CheckUserRoleMiddleware } from 'src/check-user-role/check-user-role.middleware';
 import { SortType } from 'src/shared/enum';
+import { request } from 'express';
 
 @Controller('users')
 @ApiBearerAuth('access-token')
@@ -39,6 +41,14 @@ export class UserController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
   ) {
     return this.userService.findAllUsers(page, limit, );
+  }
+
+  @Get('getProfileUser')
+  @UseGuards(AuthGuard()) 
+  @ApiOperation({ summary: 'Get a user profile by token' })
+
+  getProfileUser( @Request() request): Promise<User> {
+    return this.userService.getProfileUser(request);
   }
 
   @Get(':id')

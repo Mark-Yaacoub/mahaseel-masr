@@ -25,6 +25,9 @@ let UserController = class UserController {
     findAllUsers(page, limit) {
         return this.userService.findAllUsers(page, limit);
     }
+    getProfileUser(request) {
+        return this.userService.getProfileUser(request);
+    }
     findUserById(id) {
         return this.userService.findUserById(id);
     }
@@ -50,6 +53,15 @@ __decorate([
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findAllUsers", null);
+__decorate([
+    (0, common_1.Get)('getProfileUser'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    (0, swagger_1.ApiOperation)({ summary: 'Get a user profile by token' }),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getProfileUser", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),

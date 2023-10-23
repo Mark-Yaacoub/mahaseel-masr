@@ -73,6 +73,16 @@ export class UserService {
       return user;
     }
 
+    async getProfileUser(Request): Promise<any> {
+      const id = Request.user.userId;
+      
+      const user = await this.userModel.findOne({ _id: id }).select('-password -otp -verified -__v').exec();
+      if (!user) {
+        throw new UserNotFoundException('User not found');
+      }
+      return user;
+    }
+
     async findUserById(id: string): Promise<User> {
       const user = await this.userModel.findOne({ _id: id }).select('-password -otp -verified -__v').exec();
       if (!user) {

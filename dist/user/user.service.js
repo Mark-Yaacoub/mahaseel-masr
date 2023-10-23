@@ -70,6 +70,14 @@ let UserService = class UserService {
         }
         return user;
     }
+    async getProfileUser(Request) {
+        const id = Request.user.userId;
+        const user = await this.userModel.findOne({ _id: id }).select('-password -otp -verified -__v').exec();
+        if (!user) {
+            throw new not_found_exception_1.UserNotFoundException('User not found');
+        }
+        return user;
+    }
     async findUserById(id) {
         const user = await this.userModel.findOne({ _id: id }).select('-password -otp -verified -__v').exec();
         if (!user) {

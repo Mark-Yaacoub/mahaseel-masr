@@ -35,6 +35,7 @@ export declare class UserService {
     findUser(email: string): Promise<boolean>;
     registerUser(createUserDto: CreateUserDto): Promise<Response<User>>;
     findUserByEmail(email: string): Promise<User>;
+    getProfileUser(Request: any): Promise<any>;
     findUserById(id: string): Promise<User>;
     findUserAllDetailsById(id: string): Promise<User>;
     comparePasswords(enteredPassword: string, hashedPassword: string): Promise<boolean>;
