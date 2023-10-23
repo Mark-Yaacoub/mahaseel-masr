@@ -8,8 +8,8 @@ import * as bcrypt from 'bcrypt';
 import { Response } from 'src/shared/response';
 import { MessageEnum } from 'src/shared/message.enum';
 import { SendEmailService } from 'src/SendEmail/sendemail.service';
-import { EmailDto } from 'src/sendEmail/dto/email.dto';
 import { UserNotFoundException } from 'src/shared/not-found.exception';
+import { EmailDto } from 'src/SendEmail/dto/email.dto';
 
 
 

@@ -20,8 +20,8 @@ const user_entity_1 = require("./user.entity");
 const bcrypt = require("bcrypt");
 const message_enum_1 = require("../shared/message.enum");
 const sendemail_service_1 = require("../SendEmail/sendemail.service");
-const email_dto_1 = require("../sendEmail/dto/email.dto");
 const not_found_exception_1 = require("../shared/not-found.exception");
+const email_dto_1 = require("../SendEmail/dto/email.dto");
 let UserService = class UserService {
     constructor(userModel, sendEmailService) {
         this.userModel = userModel;
