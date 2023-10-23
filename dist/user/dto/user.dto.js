@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Pagination = exports.UpdateUserDto = exports.verifyUserDto = exports.forgetPassword = exports.ReSendOtp = exports.LoginDto = exports.CreateUserDto = void 0;
+exports.Pagination = exports.UpdatePasswordDto = exports.UpdateUserDto = exports.verifyUserDto = exports.forgetPassword = exports.ReSendOtp = exports.LoginDto = exports.CreateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateUserDto {
@@ -148,6 +148,26 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "profilePicture", void 0);
+class UpdatePasswordDto {
+}
+exports.UpdatePasswordDto = UpdatePasswordDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'كلمة المرور الحالية', example: 'password123' }),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], UpdatePasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ example: 'Mm@12345' }),
+    (0, class_validator_1.MinLength)(8),
+    (0, class_validator_1.MaxLength)(20, {
+        message: 'Please Use Strong Password with a maximum length of 20 characters.',
+    }),
+    (0, class_validator_1.Matches)(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+        message: 'Please Use Strong Password.',
+    }),
+    __metadata("design:type", String)
+], UpdatePasswordDto.prototype, "password", void 0);
 class Pagination {
 }
 exports.Pagination = Pagination;

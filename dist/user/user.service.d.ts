@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from 'mongoose';
-import { CreateUserDto, ReSendOtp, UpdateUserDto, forgetPassword, verifyUserDto } from './dto/user.dto';
+import { CreateUserDto, ReSendOtp, UpdatePasswordDto, UpdateUserDto, forgetPassword, verifyUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import { Response } from 'src/shared/response';
@@ -36,6 +36,7 @@ export declare class UserService {
     registerUser(createUserDto: CreateUserDto): Promise<Response<User>>;
     findUserByEmail(email: string): Promise<User>;
     findUserById(id: string): Promise<User>;
+    findUserAllDetailsById(id: string): Promise<User>;
     comparePasswords(enteredPassword: string, hashedPassword: string): Promise<boolean>;
     reSendOtp(dto: ReSendOtp): Promise<any>;
     verifyUser(dto: verifyUserDto): Promise<Response<User>>;
@@ -50,5 +51,7 @@ export declare class UserService {
     }>;
     generateRandomOTP(): string;
     forgetPassword(dto: forgetPassword): Promise<any>;
+    updatePassword(userId: string, dto: UpdatePasswordDto): Promise<Response<User>>;
+    checkCurrentPasswordValidity(currentPassword: string, userId: string): Promise<boolean>;
     generateRandomPassword(): Promise<string>;
 }

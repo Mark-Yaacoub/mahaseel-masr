@@ -29,6 +29,10 @@ export declare class UpdateUserDto {
     dateOfBirth: Date;
     profilePicture: string;
 }
+export declare class UpdatePasswordDto {
+    currentPassword: string;
+    password: string;
+}
 export declare class Pagination {
     page: number;
     limit: number;

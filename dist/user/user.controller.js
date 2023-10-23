@@ -32,6 +32,9 @@ let UserController = class UserController {
         return this.userService.updateUser(id, dto);
     }
     ;
+    async updatePassword(userId, dto) {
+        return this.userService.updatePassword(userId, dto);
+    }
 };
 exports.UserController = UserController;
 __decorate([
@@ -69,6 +72,17 @@ __decorate([
     __metadata("design:paramtypes", [String, user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateUser", null);
+__decorate([
+    (0, common_1.Put)('updatePassword/:userId'),
+    (0, swagger_1.ApiOperation)({ summary: 'Update Password', description: 'Update the current password to a new password.' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Password updated successfully.' }),
+    (0, swagger_1.ApiResponse)({ status: 401, description: 'Failed to verify the current password.' }),
+    __param(0, (0, common_1.Param)('userId')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, user_dto_1.UpdatePasswordDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "updatePassword", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
     (0, swagger_1.ApiBearerAuth)('access-token'),

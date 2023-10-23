@@ -77,6 +77,13 @@ let UserService = class UserService {
         }
         return user;
     }
+    async findUserAllDetailsById(id) {
+        const user = await this.userModel.findOne({ _id: id });
+        if (!user) {
+            throw new not_found_exception_1.UserNotFoundException('User not found');
+        }
+        return user;
+    }
     async comparePasswords(enteredPassword, hashedPassword) {
         return bcrypt.compare(enteredPassword, hashedPassword);
     }
@@ -168,6 +175,38 @@ let UserService = class UserService {
             messageEn: message_enum_1.MessageEnum.ForgetPasswordSuccessEn,
             messageAr: message_enum_1.MessageEnum.ForgetPasswordSuccessAr,
         };
+    }
+    async updatePassword(userId, dto) {
+        const user = await this.findUserAllDetailsById(userId);
+        if (!user) {
+            return {
+                status: 400,
+                messageEn: message_enum_1.MessageEnum.UserNotFoundEn,
+                messageAr: message_enum_1.MessageEnum.UserNotFoundAr,
+            };
+        }
+        const isCurrentPasswordValid = await this.checkCurrentPasswordValidity(dto.currentPassword, userId);
+        if (!isCurrentPasswordValid) {
+            return {
+                status: 400,
+                messageEn: message_enum_1.MessageEnum.CurrentPasswordNotValidEn,
+                messageAr: message_enum_1.MessageEnum.CurrentPasswordNotValidAr,
+            };
+        }
+        const newHashedPassword = await bcrypt.hash(dto.password, 10);
+        user.password = newHashedPassword;
+        await user.save();
+        return {
+            status: 200,
+            messageEn: message_enum_1.MessageEnum.PasswordUpdatedEn,
+            messageAr: message_enum_1.MessageEnum.PasswordUpdatedAr,
+        };
+    }
+    async checkCurrentPasswordValidity(currentPassword, userId) {
+        const user = await this.userModel.findOne({ _id: userId }).exec();
+        const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+        console.log(isPasswordValid);
+        return isPasswordValid;
     }
     async generateRandomPassword() {
         const passwordPattern = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;

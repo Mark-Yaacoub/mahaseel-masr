@@ -120,6 +120,24 @@ export class UpdateUserDto {
 
 }
 
+export class UpdatePasswordDto {
+  @ApiProperty({ description: 'كلمة المرور الحالية', example: 'password123' })
+  @IsNotEmpty()
+  currentPassword: string;
+
+  @IsNotEmpty()
+  @ApiProperty({ example: 'Mm@12345' }) 
+  @MinLength(8)
+  @MaxLength(20, {
+    message:
+      'Please Use Strong Password with a maximum length of 20 characters.',
+  })
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'Please Use Strong Password.',
+  })
+  password: string;
+}
+
 
 export class Pagination {
   page: number;

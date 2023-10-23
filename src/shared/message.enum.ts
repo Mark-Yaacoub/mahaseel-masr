@@ -32,4 +32,13 @@ export enum MessageEnum {
   ForgetPasswordSuccessEn='A new password has been sent to your email.',
   ForgetPasswordSuccessAr='لقد تم إرسال كلمة المرور الجديدة إلى بريدك الإلكتروني.',
 
+  CurrentPasswordNotValidEn='Current password not valid',
+  CurrentPasswordNotValidAr='كلمة المرور الحالية غير صحيحة',
+
+  PasswordUpdatedEn='Password updated successfully',
+  PasswordUpdatedAr='تم تحديث كلمة المرور بنجاح',
+
+  UserNotFoundEn='User not found',
+  UserNotFoundAr='المستخدم غير موجود',
+
 }

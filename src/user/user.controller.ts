@@ -16,7 +16,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateUserDto, Pagination, UpdateUserDto } from './dto/user.dto';
+import { CreateUserDto, Pagination, UpdatePasswordDto, UpdateUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { Response } from 'src/shared/response';
 import { AuthGuard } from '@nestjs/passport';
@@ -53,7 +53,6 @@ export class UserController {
 
   @Put('/:id')
   @UseGuards(AuthGuard())
-
   @ApiOperation({ summary: 'update user data by user id' })
   @ApiParam({ name: 'id', required: true  , description: 'User ID' , type: 'string' 
   , example: '6536448743a9f50c3e8c3075'})
@@ -62,6 +61,19 @@ export class UserController {
   updateUser(@Param('id') id: string, @Body() dto: UpdateUserDto): Promise<Response<User>> {
     return this.userService.updateUser(id, dto);
   };
+
+
+  @Put('updatePassword/:userId')
+  @ApiOperation({ summary: 'Update Password', description: 'Update the current password to a new password.' })
+  @ApiResponse({ status: 200, description: 'Password updated successfully.' })
+  @ApiResponse({ status: 401, description: 'Failed to verify the current password.' })
+  async updatePassword(
+    @Param('userId') userId: string,    
+    @Body() dto: UpdatePasswordDto
+  ): Promise<Response<User>> {
+    return this.userService.updatePassword(userId, dto); 
+  }
+  
 
 
 }

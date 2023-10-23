@@ -24,7 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { UserService } from './user.service';
-import { UpdateUserDto } from './dto/user.dto';
+import { UpdatePasswordDto, UpdateUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { Response } from 'src/shared/response';
 export declare class UserController {
@@ -40,4 +40,5 @@ export declare class UserController {
     }>;
     findUserById(id: string): Promise<User>;
     updateUser(id: string, dto: UpdateUserDto): Promise<Response<User>>;
+    updatePassword(userId: string, dto: UpdatePasswordDto): Promise<Response<User>>;
 }

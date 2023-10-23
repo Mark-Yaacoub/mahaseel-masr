@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateUserDto, ReSendOtp, UpdateUserDto, forgetPassword, verifyUserDto } from './dto/user.dto';
+import { CreateUserDto, ReSendOtp, UpdatePasswordDto, UpdateUserDto, forgetPassword, verifyUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import * as bcrypt from 'bcrypt';
@@ -75,6 +75,14 @@ export class UserService {
 
     async findUserById(id: string): Promise<User> {
       const user = await this.userModel.findOne({ _id: id }).select('-password -otp -verified -__v').exec();
+      if (!user) {
+        throw new UserNotFoundException('User not found');
+      }
+      return user;
+    }
+
+    async findUserAllDetailsById(id: string): Promise<User> {
+      const user = await this.userModel.findOne({ _id: id })
       if (!user) {
         throw new UserNotFoundException('User not found');
       }
@@ -223,7 +231,51 @@ export class UserService {
     messageAr: MessageEnum.ForgetPasswordSuccessAr,
   }
   }
+
+  async updatePassword(userId: string, dto: UpdatePasswordDto): Promise<Response<User>> {
+    const user = await this.findUserAllDetailsById(userId)
+      
+    if (!user) {
+      return {
+        status: 400,
+        messageEn: MessageEnum.UserNotFoundEn,
+        messageAr: MessageEnum.UserNotFoundAr,
+      };
+    }
   
+    const isCurrentPasswordValid = await this.checkCurrentPasswordValidity(dto.currentPassword, userId);
+  
+    if (!isCurrentPasswordValid) {
+      return {
+        status: 400,
+        messageEn: MessageEnum.CurrentPasswordNotValidEn,
+        messageAr: MessageEnum.CurrentPasswordNotValidAr,
+      };
+    }
+  
+  
+    const newHashedPassword = await bcrypt.hash(dto.password, 10);
+  
+    user.password = newHashedPassword;
+  
+    await user.save();
+  
+    return {
+      status: 200,
+      messageEn: MessageEnum.PasswordUpdatedEn,
+      messageAr: MessageEnum.PasswordUpdatedAr,
+    };
+  }
+  
+  
+async checkCurrentPasswordValidity(currentPassword: string, userId: string): Promise<boolean> {
+  const user = await this.userModel.findOne({ _id: userId }).exec();
+
+  const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+  console.log(isPasswordValid);
+  
+  return isPasswordValid;
+}
 
 
   async generateRandomPassword(): Promise<string> {

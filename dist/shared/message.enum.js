@@ -25,5 +25,11 @@ var MessageEnum;
     MessageEnum["UpdateSuccessAr"] = " \u062A\u0645 \u062A\u062D\u062F\u064A\u062B \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0628\u0646\u062C\u0627\u062D  ";
     MessageEnum["ForgetPasswordSuccessEn"] = "A new password has been sent to your email.";
     MessageEnum["ForgetPasswordSuccessAr"] = "\u0644\u0642\u062F \u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0627\u0644\u062C\u062F\u064A\u062F\u0629 \u0625\u0644\u0649 \u0628\u0631\u064A\u062F\u0643 \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A.";
+    MessageEnum["CurrentPasswordNotValidEn"] = "Current password not valid";
+    MessageEnum["CurrentPasswordNotValidAr"] = "\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D\u0629";
+    MessageEnum["PasswordUpdatedEn"] = "Password updated successfully";
+    MessageEnum["PasswordUpdatedAr"] = "\u062A\u0645 \u062A\u062D\u062F\u064A\u062B \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0628\u0646\u062C\u0627\u062D";
+    MessageEnum["UserNotFoundEn"] = "User not found";
+    MessageEnum["UserNotFoundAr"] = "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F";
 })(MessageEnum || (exports.MessageEnum = MessageEnum = {}));
 //# sourceMappingURL=message.enum.js.map
