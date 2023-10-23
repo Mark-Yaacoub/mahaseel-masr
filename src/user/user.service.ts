@@ -233,6 +233,7 @@ export class UserService {
   }
 
   async updatePassword(userId: string, dto: UpdatePasswordDto): Promise<Response<User>> {
+    
     const user = await this.findUserAllDetailsById(userId)
       
     if (!user) {

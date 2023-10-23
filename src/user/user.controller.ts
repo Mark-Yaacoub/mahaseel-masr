@@ -63,15 +63,15 @@ export class UserController {
   };
 
 
-  @Put('updatePassword/:userId')
+  @Put('updatePassword/:id')
   @ApiOperation({ summary: 'Update Password', description: 'Update the current password to a new password.' })
   @ApiResponse({ status: 200, description: 'Password updated successfully.' })
   @ApiResponse({ status: 401, description: 'Failed to verify the current password.' })
   async updatePassword(
-    @Param('userId') userId: string,    
+    @Param('id') id: string,    
     @Body() dto: UpdatePasswordDto
   ): Promise<Response<User>> {
-    return this.userService.updatePassword(userId, dto); 
+    return this.userService.updatePassword(id, dto); 
   }
   
 
