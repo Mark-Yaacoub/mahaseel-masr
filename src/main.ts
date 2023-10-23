@@ -3,10 +3,15 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { RateLimitMiddleware } from './check-user-role/rate-limit.middleware';
+let helmet = require('helmet');
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
+  app.use(helmet()); // security
+ 
   // DATABASE CONNECT
   let db = process.env.DB_URL;
   mongoose
