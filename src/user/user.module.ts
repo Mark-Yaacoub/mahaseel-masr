@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './user.entity';
-import { SendEmailModule } from 'src/SendEmail/sendemail.module';
+import { SendEmailModule } from 'src/sendEmail/sendEmail.module';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]) ,

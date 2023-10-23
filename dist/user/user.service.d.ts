@@ -3,7 +3,7 @@ import { CreateUserDto, ReSendOtp, verifyUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import { Response } from 'src/shared/response';
-import { SendEmailService } from 'src/SendEmail/sendemail.service';
+import { SendEmailService } from 'src/sendEmail/sendEmail.service';
 export declare class UserService {
     private readonly userModel;
     private sendEmailService;

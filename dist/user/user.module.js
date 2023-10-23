@@ -12,14 +12,14 @@ const user_service_1 = require("./user.service");
 const user_controller_1 = require("./user.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_entity_1 = require("./user.entity");
-const sendemail_module_1 = require("../SendEmail/sendemail.module");
+const sendEmail_module_1 = require("../sendEmail/sendEmail.module");
 let UserModule = class UserModule {
 };
 exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: user_entity_1.User.name, schema: user_entity_1.UserSchema }]),
-            sendemail_module_1.SendEmailModule],
+            sendEmail_module_1.SendEmailModule],
         providers: [user_service_1.UserService],
         controllers: [user_controller_1.UserController],
         exports: [user_service_1.UserService]

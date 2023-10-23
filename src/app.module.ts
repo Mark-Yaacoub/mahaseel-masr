@@ -6,7 +6,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
-import { SendEmailModule } from './SendEmail/sendemail.module';
+import { SendEmailModule } from './sendEmail/sendEmail.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config()
+
+
 
 @Module({
   imports: [
@@ -14,10 +19,16 @@ import { SendEmailModule } from './SendEmail/sendemail.module';
       envFilePath: '.env',
       isGlobal: true,
     }),
+    
     MongooseModule.forRoot(process.env.DB_URL), UserModule, AuthModule, SendEmailModule,
 
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService], 
+  
+  
 })
+
+
 export class AppModule { }
+console.log(process.env.DB_URL)
