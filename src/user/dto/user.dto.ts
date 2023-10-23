@@ -65,6 +65,15 @@ export class ReSendOtp {
 
 }
 
+export class forgetPassword {
+  @IsEmail()
+  @ApiProperty({ example: 'john.doe@example.com' }) 
+  @IsNotEmpty()
+  email: string;
+
+}
+
+
 export class verifyUserDto {
   @IsEmail()
   @ApiProperty({ example: 'john.doe@example.com' }) 

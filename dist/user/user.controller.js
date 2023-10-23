@@ -36,7 +36,7 @@ let UserController = class UserController {
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Get)(),
-    (0, swagger_1.ApiOperation)({ summary: 'Find all users', description: 'Get a list of all users with optional pagination and sorting.' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Find all users', description: 'Get a list of all users with optional pagination, sorting, and filtering.' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'List of users.' }),
     __param(0, (0, common_1.Query)('page', new common_1.DefaultValuePipe(1), common_1.ParseIntPipe)),
     __param(1, (0, common_1.Query)('limit', new common_1.DefaultValuePipe(10), common_1.ParseIntPipe)),

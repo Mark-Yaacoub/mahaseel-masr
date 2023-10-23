@@ -5,4 +5,8 @@ export declare class SendEmailService {
         recipient: any;
         otp: any;
     }): Promise<any>;
+    sendEmailNewPassword({ recipient, password }: {
+        recipient: any;
+        password: any;
+    }): Promise<any>;
 }

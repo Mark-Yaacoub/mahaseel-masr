@@ -5,6 +5,6 @@ export enum UserRole {
     
 
  export enum SortType {
-    Asc = 'ASC',
-    Desc = 'DESC',
+    Asc = 'asc',
+    Desc = 'desc',
   }

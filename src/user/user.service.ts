@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateUserDto, ReSendOtp, UpdateUserDto, verifyUserDto } from './dto/user.dto';
+import { CreateUserDto, ReSendOtp, UpdateUserDto, forgetPassword, verifyUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import * as bcrypt from 'bcrypt';
@@ -9,7 +9,7 @@ import { Response } from 'src/shared/response';
 import { MessageEnum } from 'src/shared/message.enum';
 import { SendEmailService } from 'src/sendEmail/sendEmail.service';
 import { UserNotFoundException } from 'src/shared/not-found.exception';
-import { EmailDto } from 'src/SendEmail/dto/email.dto';
+import { EmailDto, SendNewPassword } from 'src/SendEmail/dto/email.dto';
 
 
 
@@ -168,11 +168,9 @@ export class UserService {
       }
   }
   
-
-  async findAllUsers(page: number , limit: number ) {
+  async findAllUsers(page: number , limit: number, ) {
     const skip = (page - 1) * limit;
     let query = this.userModel.find();
-  
   
   
     const users = await query
@@ -189,6 +187,7 @@ export class UserService {
     };
   }
   
+  
 
   generateRandomOTP(): string {
     const min = 1000;
@@ -196,5 +195,59 @@ export class UserService {
     const otp = Math.floor(Math.random() * (max - min + 1)) + min;
     return otp.toString();
   }
+
+
+  async forgetPassword(dto: forgetPassword): Promise<any> {
+    const userData = await this.findUserByEmail(dto.email);
+    
+    const password = await this.generateRandomPassword();
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const updatedUser = await this.userModel.findOneAndUpdate(
+      { _id: userData._id },
+      { $set: { password: hashedPassword } },
+      { new: true }
+    );
+  
+    const sendNewPassword = new SendNewPassword();
+  
+    sendNewPassword.recipient = updatedUser.email;  
+    sendNewPassword.password = password;
+  
+    let sendEmail = await this.sendEmailService.sendEmailNewPassword(sendNewPassword);
+
+  return {
+    status: 200,
+    messageEn: MessageEnum.ForgetPasswordSuccessEn,
+    messageAr: MessageEnum.ForgetPasswordSuccessAr,
+  }
+  }
+  
+
+
+  async generateRandomPassword(): Promise<string> {
+    const passwordPattern =
+      /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+
+    const passwordLength = 8;
+    let password = '';
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      password += characters.charAt(randomIndex);
+    }
+
+    if (!password.match(passwordPattern)) {
+      return password;
+    }
+
+    return password;
+  }
+
+  
+
 
 }

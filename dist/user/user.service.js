@@ -154,6 +154,35 @@ let UserService = class UserService {
         const otp = Math.floor(Math.random() * (max - min + 1)) + min;
         return otp.toString();
     }
+    async forgetPassword(dto) {
+        const userData = await this.findUserByEmail(dto.email);
+        const password = await this.generateRandomPassword();
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const updatedUser = await this.userModel.findOneAndUpdate({ _id: userData._id }, { $set: { password: hashedPassword } }, { new: true });
+        const sendNewPassword = new email_dto_1.SendNewPassword();
+        sendNewPassword.recipient = updatedUser.email;
+        sendNewPassword.password = password;
+        let sendEmail = await this.sendEmailService.sendEmailNewPassword(sendNewPassword);
+        return {
+            status: 200,
+            messageEn: message_enum_1.MessageEnum.ForgetPasswordSuccessEn,
+            messageAr: message_enum_1.MessageEnum.ForgetPasswordSuccessAr,
+        };
+    }
+    async generateRandomPassword() {
+        const passwordPattern = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+        const passwordLength = 8;
+        let password = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+        for (let i = 0; i < passwordLength; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            password += characters.charAt(randomIndex);
+        }
+        if (!password.match(passwordPattern)) {
+            return password;
+        }
+        return password;
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

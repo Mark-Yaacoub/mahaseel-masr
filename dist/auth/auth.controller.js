@@ -35,6 +35,9 @@ let AuthController = class AuthController {
     async verifyUser(dto) {
         return await this.userService.verifyUser(dto);
     }
+    forgetPassword(dto) {
+        return this.userService.forgetPassword(dto);
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -79,6 +82,13 @@ __decorate([
     __metadata("design:paramtypes", [user_dto_1.verifyUserDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "verifyUser", null);
+__decorate([
+    (0, common_1.Post)('forgetPassword'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_dto_1.forgetPassword]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "forgetPassword", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     (0, swagger_1.ApiTags)('auth'),

@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
-import { CreateUserDto, LoginDto, ReSendOtp, verifyUserDto } from 'src/user/dto/user.dto';
+import { CreateUserDto, LoginDto, ReSendOtp, forgetPassword, verifyUserDto } from 'src/user/dto/user.dto';
 import { UserService } from 'src/user/user.service';
 export declare class AuthController {
     private readonly authService;
@@ -9,4 +9,5 @@ export declare class AuthController {
     registerUser(createUserDto: CreateUserDto): Promise<import("../shared/response").Response<import("../user/user.entity").User>>;
     reSendOtp(dto: ReSendOtp): Promise<any>;
     verifyUser(dto: verifyUserDto): Promise<any>;
+    forgetPassword(dto: forgetPassword): Promise<any>;
 }

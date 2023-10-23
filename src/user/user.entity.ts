@@ -39,6 +39,10 @@ export class User extends Document {
 
   @Prop({ type: String, required: true })
   password: string;
+
+  @Prop({ type: Date, default: Date.now })
+ createdDate: Date;
+
 }
 
 function generateRandomOTP() {

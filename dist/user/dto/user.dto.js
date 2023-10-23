@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Pagination = exports.UpdateUserDto = exports.verifyUserDto = exports.ReSendOtp = exports.LoginDto = exports.CreateUserDto = void 0;
+exports.Pagination = exports.UpdateUserDto = exports.verifyUserDto = exports.forgetPassword = exports.ReSendOtp = exports.LoginDto = exports.CreateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateUserDto {
@@ -86,6 +86,15 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], ReSendOtp.prototype, "email", void 0);
+class forgetPassword {
+}
+exports.forgetPassword = forgetPassword;
+__decorate([
+    (0, class_validator_1.IsEmail)(),
+    (0, swagger_1.ApiProperty)({ example: 'john.doe@example.com' }),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], forgetPassword.prototype, "email", void 0);
 class verifyUserDto {
 }
 exports.verifyUserDto = verifyUserDto;

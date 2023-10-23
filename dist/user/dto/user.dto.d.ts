@@ -14,6 +14,9 @@ export declare class LoginDto {
 export declare class ReSendOtp {
     email: string;
 }
+export declare class forgetPassword {
+    email: string;
+}
 export declare class verifyUserDto {
     email: string;
     otp: number;

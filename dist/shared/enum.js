@@ -8,7 +8,7 @@ var UserRole;
 })(UserRole || (exports.UserRole = UserRole = {}));
 var SortType;
 (function (SortType) {
-    SortType["Asc"] = "ASC";
-    SortType["Desc"] = "DESC";
+    SortType["Asc"] = "asc";
+    SortType["Desc"] = "desc";
 })(SortType || (exports.SortType = SortType = {}));
 //# sourceMappingURL=enum.js.map

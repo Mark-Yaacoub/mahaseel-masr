@@ -13,3 +13,14 @@ export class EmailDto {
   @IsNotEmpty()
   otp: number;
 }
+
+export class SendNewPassword {
+
+  @IsNotEmpty()
+
+  recipient: string;
+  @IsNotEmpty()
+
+  password:string
+
+}

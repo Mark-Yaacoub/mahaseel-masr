@@ -1,3 +1,5 @@
+import { UserRole } from "src/shared/enum";
+
 export class ResponseLogin<T> {
     status?: number;
     data?: T;

@@ -60,6 +60,10 @@ __decorate([
     (0, mongoose_1.Prop)({ type: String, required: true }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: Date, default: Date.now }),
+    __metadata("design:type", Date)
+], User.prototype, "createdDate", void 0);
 exports.User = User = __decorate([
     (0, mongoose_1.Schema)({ collection: 'users' })
 ], User);

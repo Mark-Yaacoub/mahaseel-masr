@@ -3,6 +3,6 @@ export declare enum UserRole {
     User = 2
 }
 export declare enum SortType {
-    Asc = "ASC",
-    Desc = "DESC"
+    Asc = "asc",
+    Desc = "desc"
 }

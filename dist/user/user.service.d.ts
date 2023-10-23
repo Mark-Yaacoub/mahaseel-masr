@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from 'mongoose';
-import { CreateUserDto, ReSendOtp, UpdateUserDto, verifyUserDto } from './dto/user.dto';
+import { CreateUserDto, ReSendOtp, UpdateUserDto, forgetPassword, verifyUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UserDocument } from './user.entity';
 import { Response } from 'src/shared/response';
@@ -49,4 +49,6 @@ export declare class UserService {
         totalCount: number;
     }>;
     generateRandomOTP(): string;
+    forgetPassword(dto: forgetPassword): Promise<any>;
+    generateRandomPassword(): Promise<string>;
 }

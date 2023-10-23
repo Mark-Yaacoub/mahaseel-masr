@@ -1,6 +1,6 @@
 import { Body, Controller, Post, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto, LoginDto, ReSendOtp, verifyUserDto } from 'src/user/dto/user.dto';
+import { CreateUserDto, LoginDto, ReSendOtp, forgetPassword, verifyUserDto } from 'src/user/dto/user.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserService } from 'src/user/user.service';
 
@@ -46,4 +46,11 @@ export class AuthController {
     async verifyUser(@Body() dto: verifyUserDto): Promise<any> {
       return await this.userService.verifyUser(dto);
     }
+
+    @Post('forgetPassword')
+    // @UsePipes( new ValidationPipe())
+    forgetPassword(@Body() dto: forgetPassword): Promise<any> {
+      return this.userService.forgetPassword(dto);
+    }
+  
 }

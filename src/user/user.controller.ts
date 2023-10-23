@@ -12,9 +12,10 @@ import {
   Query,
   DefaultValuePipe,
   ParseIntPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto, Pagination, UpdateUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { Response } from 'src/shared/response';
@@ -28,27 +29,17 @@ import { SortType } from 'src/shared/enum';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  // @Post()
-  // @ApiOperation({ summary: 'Create a new user' })
-  // @UsePipes(new ValidationPipe())
-  // @ApiBody({ type: CreateUserDto })
-  // async createUser(@Body() createUserDto: CreateUserDto) {
-  //   return await this.userService.registerUser(createUserDto);
-  // }
+
 
   @Get()
-  @ApiOperation({ summary: 'Find all users', description: 'Get a list of all users with optional pagination and sorting.' })
+  @ApiOperation({ summary: 'Find all users', description: 'Get a list of all users with optional pagination, sorting, and filtering.' })
   @ApiResponse({ status: 200, description: 'List of users.' })
   findAllUsers(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
-    
   ) {
-    return this.userService.findAllUsers(page, limit);
+    return this.userService.findAllUsers(page, limit, );
   }
-  
-  
-  
 
   @Get(':id')
   @UseGuards(AuthGuard())

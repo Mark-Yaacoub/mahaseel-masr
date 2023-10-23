@@ -29,5 +29,7 @@ export enum MessageEnum {
   UpdateSuccessEn = 'Update successfully',
   UpdateSuccessAr = ' تم تحديث البيانات بنجاح  ',
 
+  ForgetPasswordSuccessEn='A new password has been sent to your email.',
+  ForgetPasswordSuccessAr='لقد تم إرسال كلمة المرور الجديدة إلى بريدك الإلكتروني.',
 
 }

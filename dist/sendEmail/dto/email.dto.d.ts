@@ -4,3 +4,7 @@ export declare class EmailDto {
     text: string;
     otp: number;
 }
+export declare class SendNewPassword {
+    recipient: string;
+    password: string;
+}
