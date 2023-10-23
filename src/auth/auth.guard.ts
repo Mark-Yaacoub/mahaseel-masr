@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
     if (!token) {
       throw new UnauthorizedException();
     }
+
     try {
       const payload = await this.jwtService.verifyAsync(
         token,
@@ -20,9 +21,15 @@ export class AuthGuard implements CanActivate {
         }
       );
       request['user'] = payload;
+        console.log(payload , "payload");
+        
+      if (payload.userId !== request.params.userId) {
+        throw new UnauthorizedException('You are not authorized to access this data');
+      }
     } catch {
       throw new UnauthorizedException();
     }
+
     return true;
   }
 

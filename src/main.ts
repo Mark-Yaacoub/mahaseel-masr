@@ -30,6 +30,17 @@ async function bootstrap() {
     .setDescription('API for user management')
     .setVersion('1.0')
     .addTag('users')
+    .addBearerAuth(
+      {
+        description: `Please enter token in following format`,
+        name: 'Authorization',
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'bearer',
+        in: 'Header',
+      },
+      'access-token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('swagger', app, document);

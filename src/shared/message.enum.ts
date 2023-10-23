@@ -26,5 +26,8 @@ export enum MessageEnum {
   verifiedEn = 'User verified successfully',
   verifiedAr = 'تم التحقق من المستخدم بنجاح',
 
+  UpdateSuccessEn = 'Update successfully',
+  UpdateSuccessAr = ' تم تحديث البيانات بنجاح  ',
+
 
 }

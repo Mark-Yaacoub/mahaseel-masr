@@ -76,3 +76,45 @@ export class verifyUserDto {
   @IsNotEmpty()
   otp: number;
 }
+
+
+export class UpdateUserDto {
+
+  @ApiProperty({ example: 'John' }) 
+  @IsString()
+  @IsOptional()
+  firstName: string;
+
+  @ApiProperty({ example: 'Doe' }) 
+  @IsString()
+  @IsOptional()
+  lastName: string;
+
+  @ApiProperty({ example: 'johnie' }) 
+  @IsString()
+  @IsOptional()
+  userName: string;
+
+  @ApiProperty({ example: 'john.doe@example.com' }) 
+  @IsEmail()
+  @IsOptional()
+  email: string;
+
+  @ApiProperty({ example: '2000-01-01' }) 
+  @IsDate()
+  @IsOptional()
+  dateOfBirth: Date;
+
+  @ApiProperty({ example: 'https://example.com/profile.jpg' }) 
+  @IsOptional()
+  profilePicture: string;
+
+}
+
+
+export class Pagination {
+  page: number;
+  limit: number;
+  search?: string;
+  sort?: string;
+}
