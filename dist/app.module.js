@@ -34,5 +34,4 @@ exports.AppModule = AppModule = __decorate([
         providers: [app_service_1.AppService, auth_service_1.AuthService],
     })
 ], AppModule);
-console.log(process.env.DB_URL);
 //# sourceMappingURL=app.module.js.map

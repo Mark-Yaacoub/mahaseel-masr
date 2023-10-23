@@ -31,4 +31,4 @@ dotenv.config()
 
 
 export class AppModule { }
-console.log(process.env.DB_URL)
+// console.log(process.env.DB_URL)

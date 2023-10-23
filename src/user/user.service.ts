@@ -99,29 +99,36 @@ export class UserService {
     
   }
 
-  async verifyUser(dto: verifyUserDto): Promise<any> {
-    try {
+  async verifyUser(dto: verifyUserDto): Promise<Response<User>> {
+
       const user = await this.findUserByEmail(dto.email);
-  
+      // if(!user) {
+      //   return {
+      //     status: 400,
+      //     messageEn: MessageEnum.EmailNotExistEn,
+      //     messageAr: MessageEnum.EmailNotExistAr,
+      //   };
+      // }
+      
       if (user.otp !== dto.otp) {
         return {
           status: 400,
-          message: 'Invalid OTP',
+          messageEn: MessageEnum.OtpNotValidEn,
+          messageAr: MessageEnum.OtpNotValidAr,
         };
       }
+  
       user.verified = 1;
       await user.save();
+      
       return {
         status: 200,
-        message: 'User verified successfully',
-      };
-    } catch (error) {
-      return {
-        status: 500,
-        message: 'Internal Server Error',
+        data: user,       
+        messageEn: MessageEnum.verifiedEn,
+        messageAr: MessageEnum.verifiedAr,
       };
     }
-  }
+  
   
 
   generateRandomOTP(): string {

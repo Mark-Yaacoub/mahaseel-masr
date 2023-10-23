@@ -33,6 +33,15 @@ export class AuthService {
                 messageAr: MessageEnum.ValidDataAr,
             };        
         }
+
+        if(user.verified === 0){
+            return {
+                status: 400,
+                messageEn: MessageEnum.UserNotVerifiedEn,
+                messageAr: MessageEnum.UserNotVerifiedAr,
+            };
+
+        }
         const payload: jwtPayloadUser = {
             email: user.email,
             userId: user.id,

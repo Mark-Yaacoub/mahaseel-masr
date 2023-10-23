@@ -36,6 +36,13 @@ let AuthService = class AuthService {
                 messageAr: message_enum_1.MessageEnum.ValidDataAr,
             };
         }
+        if (user.verified === 0) {
+            return {
+                status: 400,
+                messageEn: message_enum_1.MessageEnum.UserNotVerifiedEn,
+                messageAr: message_enum_1.MessageEnum.UserNotVerifiedAr,
+            };
+        }
         const payload = {
             email: user.email,
             userId: user.id,

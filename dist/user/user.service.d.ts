@@ -13,6 +13,6 @@ export declare class UserService {
     findUserByEmail(email: string): Promise<User>;
     comparePasswords(enteredPassword: string, hashedPassword: string): Promise<boolean>;
     reSendOtp(dto: ReSendOtp): Promise<any>;
-    verifyUser(dto: verifyUserDto): Promise<any>;
+    verifyUser(dto: verifyUserDto): Promise<Response<User>>;
     generateRandomOTP(): string;
 }
