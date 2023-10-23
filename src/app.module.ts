@@ -9,7 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { SendEmailModule } from './sendEmail/sendEmail.module';
 import * as dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config()  
 
 
 
