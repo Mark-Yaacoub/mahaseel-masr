@@ -58,7 +58,6 @@ let UserService = class UserService {
         await this.sendEmailService.sendEmailOtp(emailBody);
         return {
             status: 201,
-            data: savedUser,
             messageEn: message_enum_1.MessageEnum.CreateUserSuccessEn,
             messageAr: message_enum_1.MessageEnum.CreateUserSuccessAr,
         };

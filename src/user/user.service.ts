@@ -59,7 +59,6 @@ export class UserService {
        await this.sendEmailService.sendEmailOtp(emailBody);
       return {
         status: 201,
-        data: savedUser,
         messageEn: MessageEnum.CreateUserSuccessEn,
         messageAr: MessageEnum.CreateUserSuccessAr,
       };

@@ -2,8 +2,8 @@ export enum MessageEnum {
   ValidDataEn = 'Please Enter Valid Data',
   ValidDataAr = 'من فضلك ادخل بيانات صحيحة',
 
-  CreateUserSuccessEn = 'User created successfully',
-  CreateUserSuccessAr = 'تم إنشاء المستخدم بنجاح',
+  CreateUserSuccessEn = 'User created successfully Please verify your account using the codes in the email',
+  CreateUserSuccessAr = 'تم إنشاء المستخدم بنجاح. يرجى التحقق من حسابك باستخدام الرموز الموجودة في البريد الإلكتروني',
 
   EmailExistEn = 'Email already exists',
   EmailExistAr = 'البريد الإلكتروني موجود بالفعل',
