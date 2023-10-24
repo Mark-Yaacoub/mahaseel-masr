@@ -50,7 +50,7 @@ Use MongoDB as the database to store user data. You can use an ODM library like 
 Secure the application against common security vulnerabilities. ✔️
 Use proper project structure and organization following NestJS best practices. ✔️
 
-ش
+
 Implement user roles (admin, regular user) and restrict certain actions to admin users. ✔️
 (user role: admin  )
 (email: markyaacoub@gmail.com, password: Mm@12345 => The admin has the right to execute all user APIs (get all user, get user by id , update user )
@@ -68,6 +68,6 @@ Implement pagination and sorting for user lists. ✔️
 Deploy the application to a cloud platform of your choice. ✔️
 
 render.com url (https://user-qydo.onrender.com)
-ىخف
+
 note (Repeat the Request at first until the host works for you)
 
